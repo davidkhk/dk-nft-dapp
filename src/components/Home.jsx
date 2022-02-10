@@ -14,35 +14,6 @@ const signer = provider.getSigner();
 // get the smart contract
 const contract = new ethers.Contract(contractAddress, FiredGuys.abi, signer);
 
-
-function Home() {
-
-  const [totalMinted, setTotalMinted] = useState(0);
-  useEffect(() => {
-    getCount();
-  }, []);
-
-  const getCount = async () => {
-    const count = await contract.count();
-    console.log(parseInt(count));
-    setTotalMinted(parseInt(count));
-  };
-
-  return (
-    <div>
-        <WalletBalance />
-
-        {Array(totalMinted + 1)
-        .fill(0)
-        .map((_, i) => (
-            <div key={i}>
-            <NFTImage tokenId={i} getCount={getCount} />
-            </div>
-        ))}
-    </div>
-  );
-}
-
 function NFTImage({ tokenId, getCount }) {
     const contentId = 'PINATA_CONTENT_ID';
     const metadataURI = `${contentId}/${tokenId}.json`;
@@ -77,7 +48,7 @@ function NFTImage({ tokenId, getCount }) {
     }
     return (
       <div>
-        <img src={isMinted ? imageURI : 'img/placeholder.png'}></img>
+        <img src={isMinted ? imageURI : '../assets/placeholder.png'}></img>
           <h5>ID #{tokenId}</h5>
           {!isMinted ? (
             <button onClick={mintToken}>
@@ -91,5 +62,34 @@ function NFTImage({ tokenId, getCount }) {
       </div>
     );
   }
+
+function Home() {
+
+  const [totalMinted, setTotalMinted] = useState(0);
+  useEffect(() => {
+    getCount();
+  }, []);
+
+  const getCount = async () => {
+    const count = await contract.count();
+    console.log(parseInt(count));
+    setTotalMinted(parseInt(count));
+  };
+
+  return (
+    <div>
+        <WalletBalance />
+
+        {Array(totalMinted + 1)
+        .fill(0)
+        .map((_, i) => (
+            <div key={i}>
+            <NFTImage tokenId={i} getCount={getCount} />
+            </div>
+        ))}
+    </div>
+  );
+}
+
 
 export default Home;
