@@ -14,54 +14,6 @@ const signer = provider.getSigner();
 // get the smart contract
 const contract = new ethers.Contract(contractAddress, FiredGuys.abi, signer);
 
-function NFTImage({ tokenId, getCount }) {
-    const contentId = 'PINATA_CONTENT_ID';
-    const metadataURI = `${contentId}/${tokenId}.json`;
-    const imageURI = `https://gateway.pinata.cloud/ipfs/${contentId}/${tokenId}.png`;
-  
-    const [isMinted, setIsMinted] = useState(false);
-    useEffect(() => {
-      getMintedStatus();
-    }, [isMinted]);
-  
-    const getMintedStatus = async () => {
-      const result = await contract.isContentOwned(metadataURI);
-      console.log(result)
-      setIsMinted(result);
-    };
-  
-    const mintToken = async () => {
-      const connection = contract.connect(signer);
-      const addr = connection.address;
-      const result = await contract.payToMint(addr, metadataURI, {
-        value: ethers.utils.parseEther('0.05'),
-      });
-  
-      await result.wait();
-      getMintedStatus();
-      getCount();
-    };
-  
-    async function getURI() {
-      const uri = await contract.tokenURI(tokenId);
-      alert(uri);
-    }
-    return (
-      <div>
-        <img src={isMinted ? imageURI : '../assets/placeholder.png'}></img>
-          <h5>ID #{tokenId}</h5>
-          {!isMinted ? (
-            <button onClick={mintToken}>
-              Mint
-            </button>
-          ) : (
-            <button onClick={getURI}>
-              Taken! Show URI
-            </button>
-          )}
-      </div>
-    );
-  }
 
 function Home() {
 
@@ -78,18 +30,74 @@ function Home() {
 
   return (
     <div>
-        <WalletBalance />
+      <WalletBalance />
 
-        {Array(totalMinted + 1)
-        .fill(0)
-        .map((_, i) => (
-            <div key={i}>
-            <NFTImage tokenId={i} getCount={getCount} />
-            </div>
-        ))}
+      <h1>DK NFT Collection</h1>
+      <div className="container">
+        <div className="row">
+          {Array(totalMinted + 1)
+            .fill(0)
+            .map((_, i) => (
+              <div key={i} className="col-sm">
+                <NFTImage tokenId={i} getCount={getCount} />
+              </div>
+            ))}
+        </div>
+      </div>
     </div>
   );
 }
 
+function NFTImage({ tokenId, getCount }) {
+  const contentId = 'Qmdbpbpy7fA99UkgusTiLhMWzyd3aETeCFrz7NpYaNi6zY';
+  const metadataURI = `${contentId}/${tokenId}.json`;
+  const imageURI = `https://gateway.pinata.cloud/ipfs/${contentId}/${tokenId}.jpg`;
+  // const imageURI = `img/${tokenId}.png`;
+
+  const [isMinted, setIsMinted] = useState(false);
+  useEffect(() => {
+    getMintedStatus();
+  }, [isMinted]);
+
+  const getMintedStatus = async () => {
+    const result = await contract.isContentOwned(metadataURI);
+    console.log(result)
+    setIsMinted(result);
+  };
+
+  const mintToken = async () => {
+    const connection = contract.connect(signer);
+    const addr = connection.address;
+    const result = await contract.payToMint(addr, metadataURI, {
+      value: ethers.utils.parseEther('0.05'),
+    });
+
+    await result.wait();
+    getMintedStatus();
+    getCount();
+  };
+
+  async function getURI() {
+    const uri = await contract.tokenURI(tokenId);
+    alert(uri);
+  }
+  return (
+    <div className="card" style={{ width: '18rem' }}>
+      <img className="card-img-top" src={isMinted ? imageURI : '../assets/placeholder.png'}></img>
+      <div className="card-body">
+        <h5 className="card-title">ID #{tokenId}</h5>
+        {!isMinted ? (
+          <button className="btn btn-primary" onClick={mintToken}>
+            Mint
+          </button>
+        ) : (
+          <button className="btn btn-secondary" onClick={getURI}>
+            Taken! Show URI
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
 
 export default Home;
