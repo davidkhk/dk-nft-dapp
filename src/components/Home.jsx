@@ -33,12 +33,12 @@ function Home() {
       <WalletBalance />
 
       <h1>DK NFT Collection</h1>
-      <div className="container">
-        <div className="row">
+      <div>
+        <div>
           {Array(totalMinted + 1)
             .fill(0)
             .map((_, i) => (
-              <div key={i} className="col-sm">
+              <div key={i}>
                 <NFTImage tokenId={i} getCount={getCount} />
               </div>
             ))}
@@ -82,16 +82,16 @@ function NFTImage({ tokenId, getCount }) {
     alert(uri);
   }
   return (
-    <div className="card" style={{ width: '18rem' }}>
-      <img className="card-img-top" src={isMinted ? imageURI : '../assets/placeholder.png'}></img>
-      <div className="card-body">
-        <h5 className="card-title">ID #{tokenId}</h5>
+    <div style={{ width: '18rem' }}>
+      <img src={isMinted ? imageURI : '../assets/placeholder.png'}></img>
+      <div>
+        <h5>ID #{tokenId}</h5>
         {!isMinted ? (
-          <button className="btn btn-primary" onClick={mintToken}>
+          <button onClick={mintToken}>
             Mint
           </button>
         ) : (
-          <button className="btn btn-secondary" onClick={getURI}>
+          <button onClick={getURI}>
             Taken! Show URI
           </button>
         )}
