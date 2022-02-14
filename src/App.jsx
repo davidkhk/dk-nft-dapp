@@ -3,7 +3,7 @@ import Install from './components/Install';
 
 function App() {
   if (window.ethereum) {
-    return <Home />;
+    return <Home />
   } else {
     return <Install />
   }

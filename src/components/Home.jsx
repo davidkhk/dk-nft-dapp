@@ -1,5 +1,9 @@
-import WalletBalance from './WalletBalance';
+import Navbar from './Navbar'
 import NFTImage from './NFTImage';
+
+import { ChakraProvider } from '@chakra-ui/react'
+import Fonts from './Fonts.jsx'
+import theme from '../theme.js'
 
 import { useEffect, useState } from 'react';
 
@@ -30,8 +34,9 @@ function Home() {
   };
 
   return (
-    <div>
-      <WalletBalance />
+    <ChakraProvider theme={theme}>
+      <Fonts />
+      <Navbar />
       <h1>DK NFT Collection</h1>
       <div>
         <div>
@@ -44,7 +49,7 @@ function Home() {
             ))}
         </div>
       </div>
-    </div>
+    </ChakraProvider>
   );
 }
 
