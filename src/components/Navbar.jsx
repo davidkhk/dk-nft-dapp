@@ -1,4 +1,3 @@
-import WalletBalance from './WalletBalance';
 import logo from '../logo.png';
 
 import { Box, Flex, Avatar, Button, Menu, MenuButton, MenuList, useColorModeValue, Stack, useColorMode, Center, } from '@chakra-ui/react';
@@ -9,32 +8,24 @@ function Navbar() {
   
   return (
     <>
-      <Box bg={useColorModeValue('gray.100', 'gray.900')} py={2} px={4}>
-        <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-          <WalletBalance />
-
-          <Flex alignItems={'center'}>
-            <Stack direction={'row'} spacing={7}>
-              <Button onClick={toggleColorMode}>
-                {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
-              </Button>
-
+      <Box bg={useColorModeValue('#ecfeff', '#285E61')} px={4} width='100%' position="fixed">
+        <Flex h={16} align='center' justify='space-between' >
               <Menu>
                 <MenuButton
-                  rounded={'full'}
-                  variant={'link'}
-                  cursor={'pointer'}
+                  rounded='full'
+                  variant='link'
+                  cursor='pointer'
                   minW={0}>
                   <Avatar
-                    size={'sm'}
+                    size='sm'
                     src={logo}
                   />
                 </MenuButton>
-                <MenuList alignItems={'center'}>
+                <MenuList alignItems='center'>
                   <br />
                   <Center>
                     <Avatar
-                      size={'2xl'}
+                      size='2xl'
                       src={logo}
                     />
                   </Center>
@@ -45,6 +36,13 @@ function Navbar() {
                   <br />
                 </MenuList>
               </Menu>
+
+          <Flex align='center'>
+            <Stack direction='row' spacing={7}>
+              <Button onClick={toggleColorMode}>
+                {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+              </Button>
+
             </Stack>
           </Flex>
         </Flex>
