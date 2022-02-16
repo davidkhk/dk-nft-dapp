@@ -3,7 +3,7 @@ import { Button, Box, Center, useColorModeValue, Text, Stack, Image, } from '@ch
 
 import { ethers } from 'ethers';
 
-function NFTImage({ tokenId, getCount, contract }) {
+const NFTImage = ({ tokenId, getCount, contract }) => {
     const contentId = 'Qmdbpbpy7fA99UkgusTiLhMWzyd3aETeCFrz7NpYaNi6zY';
     const metadataURI = `${contentId}/${tokenId}.json`;
     const imageURI = `https://gateway.pinata.cloud/ipfs/${contentId}/${tokenId}.jpg`;

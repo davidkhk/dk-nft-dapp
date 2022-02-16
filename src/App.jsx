@@ -1,5 +1,6 @@
 import Navbar from './components/Navbar';
 import Home from './components/Home';
+import Footer from './components/Footer';
 import Install from './components/Install';
 
 import { ChakraProvider } from '@chakra-ui/react'
@@ -15,6 +16,7 @@ function App() {
         <Fonts />
           <Navbar />
           <Home />
+          <Footer />
         </ChakraProvider>
       </>
     )} else {

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import WalletBalance from './WalletBalance';
 import NFTImage from './NFTImage';
 
-import { Icon, Flex, Text, useColorModeValue } from '@chakra-ui/react'
+import { Icon, Flex, Text } from '@chakra-ui/react'
 import  { SiEthereum } from 'react-icons/si';
 
 import { ethers } from 'ethers';
@@ -19,7 +19,7 @@ const signer = provider.getSigner();
 // get the smart contract
 const contract = new ethers.Contract(contractAddress, FiredGuys.abi, signer);
 
-function Home() {
+const Home = () => {
 
   const [totalMinted, setTotalMinted] = useState(0);
   useEffect(() => {
@@ -33,9 +33,9 @@ function Home() {
   };
 
   return (
-      <Flex direction='column' bg={useColorModeValue('#ecfeff', '#285E61')} >
+      <Flex direction='column' bgGradient='linear(to-b,#ecfeff, #bedadb)' >
         <Flex width='full' direction='row' align='flex-start' justify='space-evenly' py='10%' >
-          <Text bgGradient='linear(to-l, #203b32, #30834b)' bgClip='text' fontSize='6xl' fontWeight='extrabold' >
+          <Text bgGradient='linear(to-l, #203b32, #30834b)' bgClip='text' fontSize='6xl' fontWeight='extrabold' p='.1rem' >
             Welcome to my<br /> NFT gallery
           </Text>
 
@@ -55,7 +55,7 @@ function Home() {
           {Array(totalMinted + 1)
             .fill(0)
             .map((_, i) => (
-              <div key={i}>
+              <div key={i} >
                 <NFTImage tokenId={i} getCount={getCount} contract={contract} />
               </div>
             ))}
