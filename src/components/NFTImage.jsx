@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Button, Box, Center, useColorModeValue, Text, Stack, Image, } from '@chakra-ui/react'
+import { Button, Box, Center, Text, Stack, Image, } from '@chakra-ui/react'
 
 import { ethers } from 'ethers';
 
@@ -43,7 +43,6 @@ const NFTImage = ({ tokenId, getCount, contract }) => {
           p={6}
           maxW='330px'
           w='full'
-          bg={useColorModeValue('white', 'gray.800')}
           boxShadow='2xl'
           rounded='lg'
           pos='relative'

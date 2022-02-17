@@ -14,7 +14,7 @@ function WalletBalance() {
     };
 
     return (
-      <Box p={2} color='#219F94'>
+      <Box p={2} color='#219F94' >
         <h5>Your Balance, ETH: {balance}</h5>
         {!balance && (
           <Button colorScheme='teal' size='sm' onClick={() => getBalance()}>Show my balance</Button>
