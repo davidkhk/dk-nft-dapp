@@ -79,7 +79,7 @@ const NFTImage = ({ tokenId, getCount, contract }) => {
           </Box>
           <Stack pt={10} align='center'>
             <Text color='gray.600'>
-              ETH 0.0005
+              ETH 0.005
             </Text>
             <Text color='gray.500' fontSize='sm' textTransform='uppercase'>
               ID #{tokenId}
