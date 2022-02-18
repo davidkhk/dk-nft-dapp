@@ -22,6 +22,7 @@ const contract = new ethers.Contract(contractAddress, FiredGuys.abi, signer);
 const Home = () => {
 
   const [totalMinted, setTotalMinted] = useState(0);
+  
   useEffect(() => {
     getCount();
   }, []);
@@ -31,7 +32,7 @@ const Home = () => {
     console.log(parseInt(count));
     setTotalMinted(parseInt(count));
   };
-
+  
   return (
       <Flex direction='column' align='center' bgGradient='linear(to-b,#ecfeff, #bedadb)' >
         <Flex width='full' direction='row' align='flex-start' justify='space-evenly' py='10%' >
@@ -59,7 +60,7 @@ const Home = () => {
             .fill(0)
             .map((_, i) => (
               <div key={i} >
-                <NFTImage tokenId={i} getCount={getCount} contract={contract} />
+                <NFTImage tokenId={i} getCount={getCount} contract={contract} signer={signer} />
               </div>
             ))}
         </div>

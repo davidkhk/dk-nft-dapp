@@ -3,7 +3,7 @@ import { Button, Box, Center, Text, Stack, Image, } from '@chakra-ui/react'
 
 import { ethers } from 'ethers';
 
-const NFTImage = ({ tokenId, getCount, contract }) => {
+const NFTImage = ({ tokenId, getCount, contract, signer }) => {
     const contentId = 'Qmdbpbpy7fA99UkgusTiLhMWzyd3aETeCFrz7NpYaNi6zY';
     const metadataURI = `${contentId}/${tokenId}.json`;
     const imageURI = `https://gateway.pinata.cloud/ipfs/${contentId}/${tokenId}.jpg`;
@@ -23,7 +23,7 @@ const NFTImage = ({ tokenId, getCount, contract }) => {
       const connection = contract.connect(signer);
       const addr = connection.address;
       const result = await contract.payToMint(addr, metadataURI, {
-        value: ethers.utils.parseEther('0.05'),
+        value: ethers.utils.parseEther('0.005'),
       });
   
       await result.wait();
