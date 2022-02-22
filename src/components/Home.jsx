@@ -35,12 +35,12 @@ const Home = () => {
   
   return (
       <Flex direction='column' align='center' bgGradient='linear(to-b,#ecfeff, #bedadb)' >
-        <Flex width='full' direction='row' align='flex-start' justify='space-evenly' py='10%' >
-          <Text bgGradient='linear(to-l, #203b32, #30834b)' bgClip='text' fontSize='6xl' fontWeight='extrabold' p='.1rem' >
+        <Flex width='full' direction='row' align='flex-start' justify='space-evenly' wrap='wrap' py={['20%', '10%']} >
+          <Text bgGradient='linear(to-l, #203b32, #30834b)' bgClip='text' fontSize={['4xl', '5xl', '6xl']} fontWeight='extrabold' pt={['2rem', '3rem']} px='2rem' >
             Welcome to my<br /> NFT gallery
           </Text>
 
-          <Flex border='1px' borderColor='teal' boxShadow='dark-lg' p={3} direction='column' justify='flex-end' align='flex-start' rounded='xl' height={40} width='20%' my={5}>
+          <Flex border='1px' borderColor='teal' boxShadow='dark-lg' p={3} direction='column' justify='flex-end' align='flex-start' rounded='xl' height={40} width='15rem' m='2rem'>
             <Flex justify='space-between' direction='column' width='100%' height='100%'>
               <Flex justify='space-between' align='flex-start'>
                   <Flex width={10} height={10} rounded='100%' border='1px' borderColor='teal' justify='center' align='center'>
@@ -51,19 +51,18 @@ const Home = () => {
             </Flex>
           </Flex>
         </Flex>
-        <Text bg='#203b32' bgClip='text' fontSize='xl' mb='5%' align='center' >
+
+        <Text bg='#203b32' bgClip='text' fontSize='xl' mb='5%' align='center' px={['1rem', '3rem']} >
           Connect your MetaMask wallet and mint beautiful photograph NFTs by clicking the "Mint" button.<br />They were all taken by me over the course of several years.
         </Text>
 
-        <div>
-          {Array(totalMinted + 1)
-            .fill(0)
-            .map((_, i) => (
-              <div key={i} >
-                <NFTImage tokenId={i} getCount={getCount} contract={contract} signer={signer} />
-              </div>
-            ))}
-        </div>
+        {Array(totalMinted + 1)
+          .fill(0)
+          .map((_, i) => (
+            <div key={i} >
+              <NFTImage tokenId={i} getCount={getCount} contract={contract} signer={signer} />
+            </div>
+          ))}
       </Flex>
   );
 }
